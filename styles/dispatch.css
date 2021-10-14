@@ -1,0 +1,64 @@
+.table__right > input{
+    background-color:#276A49;
+    color: white;
+    pointer-events:none;
+    max-height: 500px;
+    
+}
+textarea{
+    background-color:#276A49;
+    color: white;
+    height: 10px;
+    overflow-wrap: break-word;
+    width:150%;
+}
+#btnDispatch{
+    background:#FFA901;
+    outline:none;
+    border:none;
+    padding:10px;
+    color:white;
+    border-radius:5px;
+    margin:5px;
+    margin-right: 20px;
+}
+#btnDispatch:hover{
+    background:#FFF;
+    cursor:pointer;
+    outline:none;
+    border:2px solid #FFA901;
+    padding:8px;
+    color:#FFA901;
+    border-radius:5px;
+}
+
+table{
+    background-color:#fff;
+    color:white;
+}
+#btnCancel{
+    background:rgb(246, 75, 75);
+    outline:none;
+    border:none;
+    padding:10px;
+    color:white;
+    border-radius:5px;
+    cursor:pointer;
+    margin:5px;
+}
+#btnCancel:hover{
+    background:#fff;
+    outline:none;
+    border:2px solid rgb(246, 75, 75);
+    padding:8px;
+    color:rgb(246, 75, 75);
+    border-radius:5px;
+    cursor:pointer;
+}
+.form__buttons{
+    margin-top:-1px;
+    width:100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom:20px;
+}

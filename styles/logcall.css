@@ -115,24 +115,34 @@ body{
     outline:none;
     border-radius: 5px;
 }
+.form__buttons{
+    width:100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom:20px;
+    margin-top:10px;
+    
+}
 
-table {
+#btnCancel{
     background:rgb(246, 75, 75);
     outline:none;
     border:none;
     padding:10px;
     color:white;
     border-radius:5px;
+    margin-right: 5px;
 }
-table #btnProcessCall{
+#btnProcessCall{
     background:#FFA901;
     outline:none;
     border:none;
     padding:10px;
     color:white;
     border-radius:5px;
+    margin-right:25px;
 }
-table button{
+#btnCancel{
     background:rgb(246, 75, 75);
     outline:none;
     border:none;
@@ -141,7 +151,7 @@ table button{
     border-radius:5px;
     cursor:pointer;
 }
-table button:hover{
+#btnCancel:hover{
     background:#fff;
     outline:none;
     border:2px solid rgb(246, 75, 75);
@@ -150,7 +160,7 @@ table button:hover{
     border-radius:5px;
     cursor:pointer;
 }
-table #btnProcessCall:hover{
+#btnProcessCall:hover{
     background:#FFF;
     cursor:pointer;
     outline:none;
@@ -159,3 +169,4 @@ table #btnProcessCall:hover{
     color:#FFA901;
     border-radius:5px;
 }
+

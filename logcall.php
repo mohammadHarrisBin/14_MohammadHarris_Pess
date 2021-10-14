@@ -64,27 +64,33 @@
         <form method="post" action='dispatch.php' onSubmit="return mohammadHarris();" name='frmLogCall'>
 
             <table>
-                <tr>
-                    <h1 class='table__top'>
-                    Log Call Panel
-                </h1></tr>
+            <tr>
+                    <h1 class='table__top' style="width:40%; padding:5px; font-size:20px">
+                        User Information
+                    </h1>
+                </tr>
                 
                 <tr>
+                  
                     <td class='table__left'>Caller's Name:</td>
+                    <!-- <td><?php echo $_POST['callerName'] ?></td> -->
                     <td class='table__right'><input type="text" name='callerName' id='callerName' placeholder="callers name"></td>
                 </tr>
 
                 <tr>
                     <td class='table__left'>Contact No:</td>
+                    <!-- <td><?php echo $_POST['contactNo'] ?></td> -->
                     <td class='table__right'><input type="text" name='contactNo' id='contactNo' placeholder="e.g 98651234"></td>
                 </tr>
 
                 <tr>
                     <td class='table__left'>Location:</td>
+                    <!-- <td><?php echo $_POST['location'] ?></td> -->
                     <td class='table__right'><input type="text" name='location' id='location' placeholder='e.g Singapore'></td>
                 </tr>
 
                 <tr>
+                <!-- <td><?php echo $_POST['incidentType'] ?></td> -->
                     <td class='table__left'>Incident Type</td>
                     <td class='table__right'>
                         <select name='incidentType' id='incidentType'>
@@ -99,23 +105,28 @@
                 </tr>
 
                 <tr>
+                <!-- <td><?php echo $_POST['incidentDesc'] ?></td> -->
                     <td class='table__left'>Description:</td>
                     <td class='table__right'>
                         <Textarea name='incidentDesc' id='incidentDesc' cols='45' placeholder='Accident etc...'></Textarea>
                     </td>
                 </tr>
 
-                <tr>
+                <!-- <tr>
                     <td class='table__left'>
                         <button type="reset" name='btnCancel'>Reset</button>
                     </td>
                     <td class='table__right'>
                         <button type="submit" name='btnProcessCall' id='btnProcessCall'>Process Call</button>
                     </td>
-                </tr>
+                </tr> -->
 
 
             </table>
+            <div class='form__buttons'>
+                <button type="reset" name='btnCancel' id='btnCancel'>Reset</button>
+                <button type="submit" name='btnProcessCal' id='btnProcessCall'>Dispatch</button>
+            </div>
 
         </form>
         
