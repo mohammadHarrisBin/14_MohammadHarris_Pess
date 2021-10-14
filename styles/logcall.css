@@ -1,0 +1,161 @@
+
+main {display: flex;}
+main > * {border: 1px solid;}
+table {
+    border-collapse: collapse; 
+    font-family: helvetica;
+}
+td, th 
+{
+    border:  1px solid;
+    padding: 10px;
+    min-width: 200px;
+    background: white;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: #276a49;
+    border:1px solid white;
+}
+.table-container {
+  position: relative;
+  max-height:  300px;
+  width: 500px;
+  overflow: scroll;
+  
+}
+
+thead th {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #CCCCFF;
+}
+
+thead th:first-child {
+  left: 0;
+  z-index: 3;
+}
+
+tfoot {
+  position: -webkit-sticky;
+  bottom: 0;
+  z-index: 2;
+}
+
+tfoot td {
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  background: hsl(20, 50%, 70%);
+}
+
+tfoot td:first-child {
+  z-index: 3;
+}
+
+tbody {
+  overflow: scroll;
+  height: 200px;
+}
+
+/* MAKE LEFT COLUMN FIXEZ */
+tr > :first-child {
+  position: -webkit-sticky;
+  position: sticky; 
+  background:#07562E;
+  color:white;
+  left: 0; 
+}
+/* don't do this */
+tr > :first-child {
+  box-shadow: inset 0px 1px black;
+}
+
+body{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+.table__top{
+    background-color: #FFA901;
+    text-align: center;
+    padding:20px;
+    color:white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-bottom:1px;
+    width:92.8%;
+    
+}
+
+.container{
+    padding:10px;
+
+}
+.table__left{
+   padding:10px;
+}
+.table__right {
+    padding:10px;
+    display:flex;
+    justify-content:flex-start;
+}
+.table__right > input, select{
+    width:200px;
+    padding:7px;
+    border:none;
+    outline:none;
+    border-radius: 5px;
+}
+.table__right > textarea{
+    padding:10px;
+    height: 100px;
+    border:none;
+    outline:none;
+    border-radius: 5px;
+}
+
+table {
+    background:rgb(246, 75, 75);
+    outline:none;
+    border:none;
+    padding:10px;
+    color:white;
+    border-radius:5px;
+}
+table #btnProcessCall{
+    background:#FFA901;
+    outline:none;
+    border:none;
+    padding:10px;
+    color:white;
+    border-radius:5px;
+}
+table button{
+    background:rgb(246, 75, 75);
+    outline:none;
+    border:none;
+    padding:10px;
+    color:white;
+    border-radius:5px;
+    cursor:pointer;
+}
+table button:hover{
+    background:#fff;
+    outline:none;
+    border:2px solid rgb(246, 75, 75);
+    padding:8px;
+    color:rgb(246, 75, 75);
+    border-radius:5px;
+    cursor:pointer;
+}
+table #btnProcessCall:hover{
+    background:#FFF;
+    cursor:pointer;
+    outline:none;
+    border:2px solid #FFA901;
+    padding:8px;
+    color:#FFA901;
+    border-radius:5px;
+}

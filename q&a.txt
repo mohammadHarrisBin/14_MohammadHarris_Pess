@@ -1,0 +1,7 @@
+The screen above doesn’t resemble that one in Figure 1, what’re missing? Write down
+your findings:
+
+1. CSS styling
+2. header and banner
+
+
