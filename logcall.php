@@ -12,25 +12,34 @@
 <body>
     <script>
         const mohammadHarris = () => {
-            var x = document.forms['frmLogCall']['callerName'].value;
-            if (x == null || x == '') {
-                alert('Caller Name is required');
+            let inputs = ['callerName', 'contactNo', 'location', 'incidentType', 'incidentDesc'];
+            let hasError = false;
+            inputs.forEach((input) => {
+                var x = document.forms['frmLogCall'][input].value;
+                if (x == null || x == '') {
+                    alert(`${input} is required`);
+                    // window.location.href = "http://localhost/htdocs/14_MohammadHarris_project5/14_MohammadHarris_Pess/logcall.php";
+                    hasError = true;
+                }
+            })
+            if (hasError == true) {
                 return false;
             }
+
         }
     </script>
     <?php
     include('nav.php');
     include('db.php');
     //connecting the database
-    $mysqli= mysqli_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_DATABASE);
+    $mysqli = mysqli_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_DATABASE);
 
     if ($mysqli->connect_error) {
         die("Error connecting to the database: " . $mysqli->connect_error);
     }
 
     $sql = "SELECT * FROM incidenttype";
-    
+
 
     if (!($stmt = $mysqli->prepare($sql))) {
         die("Command error: " . $mysqli->error);
@@ -55,23 +64,23 @@
     $resultset->close();
 
     $mysqli->close();
-    
+
     ?>
-    
+
 
     <div id="container">
-        
+
         <form method="post" action='dispatch.php' onSubmit="return mohammadHarris();" name='frmLogCall'>
 
             <table>
-            <tr>
+                <tr>
                     <h1 class='table__top' style="width:40%; padding:5px; font-size:20px">
                         User Information
                     </h1>
                 </tr>
-                
+
                 <tr>
-                  
+
                     <td class='table__left'>Caller's Name:</td>
                     <!-- <td><?php echo $_POST['callerName'] ?></td> -->
                     <td class='table__right'><input type="text" name='callerName' id='callerName' placeholder="callers name"></td>
@@ -90,14 +99,14 @@
                 </tr>
 
                 <tr>
-                <!-- <td><?php echo $_POST['incidentType'] ?></td> -->
+                    <!-- <td><?php echo $_POST['incidentType'] ?></td> -->
                     <td class='table__left'>Incident Type</td>
                     <td class='table__right'>
                         <select name='incidentType' id='incidentType'>
                             <?php
                             echo $incidentType[0];
-                            foreach($incidentType as $incident){
-                                echo '<option value="'.$incident.'".>'.$incident.'</option>';
+                            foreach ($incidentType as $incident) {
+                                echo '<option value="' . $incident . '".>' . $incident . '</option>';
                             }
                             ?>
                         </select>
@@ -105,7 +114,7 @@
                 </tr>
 
                 <tr>
-                <!-- <td><?php echo $_POST['incidentDesc'] ?></td> -->
+                    <!-- <td><?php echo $_POST['incidentDesc'] ?></td> -->
                     <td class='table__left'>Description:</td>
                     <td class='table__right'>
                         <Textarea name='incidentDesc' id='incidentDesc' cols='45' placeholder='Accident etc...'></Textarea>
@@ -129,7 +138,7 @@
             </div>
 
         </form>
-        
+
     </div>
 
 </body>
