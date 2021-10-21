@@ -15,55 +15,13 @@
     <?php
 
     include('nav.php');
-    require_once 'db.php';
 
-    $mysqli = mysqli_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_DATABASE);
-
-    if ($mysqli->connect_error) {
-        die("Error connecting to the database: " . $mysqli->connect_error);
-    }
-
-    $sql = "
- 
- SELECT patrolcarId, statusDesc FROM patrolcar JOIN patrolcar_status ON 
- patrolcar.patrolcarStatusId=patrolCar_status.StatusId WHERE patrolcar.patrolcarStatusId='2' OR
- patrolcarStatusId='3' 
- 
- ";
-
-    if (!($stmt = $mysqli->prepare($sql))) {
-        die("Command error: " . $mysqli->errno);
-    }
-
-    if (!$stmt->execute()) {
-        die('Cannot run SQL command' . $stmt->errno);
-    }
-
-    if (!($resultset = $stmt->get_result())) {
-        die('No data is resultset: ' . $stmt->errno);
-    }
-
-    $patrolcarArray;
-
-    while ($row = $resultset->fetch_assoc()) {
-        $patrolcarArray[$row['patrolcarId']] = $row['statusDesc'];
-    }
-    
-    // foreach($patrolcarArray as $car){
-    //     echo $car;
-    // }
-
-    $stmt->close();
-
-    $resultset->close();
-
-    $mysqli->close();
 
     ?>
 
     <?php
 
-    if(isset($_POST['btnDispatch'])){
+    if (isset($_POST['btnDispatch'])) {
 
         require_once 'db.php';
         $mysqli = mysqli_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_DATABASE);
@@ -72,13 +30,13 @@
             die("Error connecting to the database: " . $mysqli->connect_error);
         }
 
-        $patrolcarDispatch = $_POST['chkPatrolcar'];// the array of patrol cars
+        $patrolcarDispatch = $_POST['chkPatrolcar']; // the array of patrol cars
         $numOfPatrolcarDispatched = count($patrolcarDispatch); // count the number of cars
 
         $incidentStatus;
-        if( $numOfPatrolcarDispatched > 0){
+        if ($numOfPatrolcarDispatched > 0) {
             $incidentStatus = 2; //dispatched
-        }else{
+        } else {
             $incidentStatus = 1; //pending
         }
 
@@ -90,18 +48,16 @@
             die('Cannot run SQL command' . $mysqli->errno);
         }
 
-        if(!$stmt->bind_param('ssssss',
-                $_POST['callerName'],
-                $_POST['contactNo'],
-                $_POST['incidentType'],
-                $_POST['location'],
-                $_POST['incidentDesc'],
-                $incidentStatus 
-        ))
-        
-        {
+        if (!$stmt->bind_param(
+            'ssssss',
+            $_POST['callerName'],
+            $_POST['contactNo'],
+            $_POST['incidentType'],
+            $_POST['location'],
+            $_POST['incidentDesc'],
+            $incidentStatus
+        )) {
             die('Binding parameters failed' . $stmt->errno);
-
         }
         if (!$stmt->execute()) {
             die('Cannot run SQL command' . $stmt->errno);
@@ -111,19 +67,19 @@
         $incidentId = mysqli_insert_id($mysqli);
 
         //update the patrolcar status and add it to the table
-        for($i=0; $i<$numOfPatrolcarDispatched; $i++){
+        for ($i = 0; $i < $numOfPatrolcarDispatched; $i++) {
             //update the car
             $sql = "UPDATE patrolcar SET patrolcarStatusId = '1' WHERE patrolcarid = ?";
-            
+
             if (!($stmt = $mysqli->prepare($sql))) {
                 die('Prepare failed:' . $mysqli->errno);
             }
 
-            if(!($stmt->bind_param('s',$patrolcarDispatch[$i]))){
+            if (!($stmt->bind_param('s', $patrolcarDispatch[$i]))) {
                 die("Update patrolcar_status table failed:" . $stmt->errno);
             }
 
-            if(!($stmt->execute())){
+            if (!($stmt->execute())) {
                 die("Update patrolcar_status failed:" . $stmt->errno);
             }
 
@@ -134,21 +90,24 @@
                 die('Prepare failed' . $mysqli->errno);
             }
 
-            if(!($stmt->bind_param('ss', $incidentId, $patrolcarDispatch[$i]))){
-                die('Binding parameters failed:' .$stmt->errno);
+            if (!($stmt->bind_param('ss', $incidentId, $patrolcarDispatch[$i]))) {
+                die('Binding parameters failed:' . $stmt->errno);
             }
-            if(!($stmt->execute())){
+            if (!($stmt->execute())) {
                 die("Insert dispatch table failed:" . $stmt->errno);
             }
-
         }
 
         $stmt->close();
         $mysqli->close();
-
+    ?>
+        <script>
+            windows.location.href = '/htdocs/14_MohammadHarris_project5/14_MohammadHarris_Pess/dispatch.php'
+        </script>
+    <?php
 
     }
-    
+
     ?>
 
 
@@ -159,21 +118,21 @@
             <table style='border:1px white solid' class='table2'>
                 <tr>
                     <h1 class='table__top' style="width:40%; padding:5px; font-size:20px">
-                    Incident Detail
+                        Incident Detail
                     </h1>
                 </tr>
 
                 <tr>
 
                     <td class='table__left'>Caller's Name:</td>
-                    <!-- <td class='table__right' name='callerName'><?php  echo $_POST['callerName'] ?></td> -->
-                    
-                    <td class='table__right'><input value=' <?php  echo $_POST['callerName'] ?>' type="text" name='callerName' id='callerName' placeholder="callers name">
+                    <!-- <td class='table__right' name='callerName'><?php echo $_POST['callerName'] ?></td> -->
+
+                    <td class='table__right'><input value=' <?php echo $_POST['callerName'] ?>' type="text" name='callerName' id='callerName' placeholder="callers name">
                 </tr>
 
                 <tr>
                     <td class='table__left'>Contact No:</td>
-                    <td class='table__right'><input value=' <?php  echo $_POST['contactNo'] ?>' type="text" id='contactNo' placeholder="e.g 98651234"  name='contactNo'>
+                    <td class='table__right'><input value=' <?php echo $_POST['contactNo'] ?>' type="text" id='contactNo' placeholder="e.g 98651234" name='contactNo'>
 
                 </tr>
 
@@ -184,16 +143,16 @@
                 </tr>
 
                 <tr>
-                   
+
                     <td class='table__left'>Incident Type</td>
-                   
-                    <td class='table__right'><input name='incidentType' id='incidentType' value='<?php echo $_POST['incidentType'] ?>'/></td>
-                    
-                    
+
+                    <td class='table__right'><input name='incidentType' id='incidentType' value='<?php echo $_POST['incidentType'] ?>' /></td>
+
+
                 </tr>
 
                 <tr>
-                    
+
                     <td class='table__left'>Description:</td>
                     <!-- <td class='table__right'><?php echo $_POST['incidentDesc'] ?></td> -->
 
@@ -202,26 +161,74 @@
                     </td>
                 </tr>
 
-                
+
 
 
 
             </table>
+            <?php
+
+
+            require_once 'db.php';
+
+            $mysqli = mysqli_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_DATABASE);
+
+            if ($mysqli->connect_error) {
+                die("Error connecting to the database: " . $mysqli->connect_error);
+            }
+
+            $sql = "
+         
+         SELECT patrolcarId, statusDesc FROM patrolcar JOIN patrolcar_status ON 
+         patrolcar.patrolcarStatusId=patrolCar_status.StatusId WHERE patrolcar.patrolcarStatusId='2' OR
+         patrolcarStatusId='3' 
+         
+         ";
+
+            if (!($stmt = $mysqli->prepare($sql))) {
+                die("Command error: " . $mysqli->errno);
+            }
+
+            if (!$stmt->execute()) {
+                die('Cannot run SQL command' . $stmt->errno);
+            }
+
+            if (!($resultset = $stmt->get_result())) {
+                die('No data is resultset: ' . $stmt->errno);
+            }
+
+            $patrolcarArray;
+
+            while ($row = $resultset->fetch_assoc()) {
+                $patrolcarArray[$row['patrolcarId']] = $row['statusDesc'];
+            }
+
+            // foreach($patrolcarArray as $car){
+            //     echo $car;
+            // }
+
+            $stmt->close();
+
+            $resultset->close();
+
+            $mysqli->close();
+            ?>
+
             <br>
             <table style='margin-bottom:1px; border:1px solid white' colspan=3>
 
-                
+
                 <tr class='margin-top:-50px'>
                     <h1 class='table__top' style="width:40%; padding:5px; font-size:20px;">
                         Dispatch Patrolcar panel
                     </h1>
                 </tr>
-                
+
 
                 <?php
 
                 foreach ($patrolcarArray as $key => $car) {
-                    
+
 
                     echo
                     "<tr>
@@ -246,12 +253,12 @@
                     </td>
                     
                 </tr> -->
-                
-            <table/>
-            <div class='form__buttons'>
-                  <button type="reset" name='btnCancel' id='btnCancel'>Reset</button>
-                  <button type="submit" name='btnDispatch' id='btnDispatch'>Dispatch</button>
-                  </div>
+
+                <table />
+                <div class='form__buttons'>
+                    <button type="reset" name='btnCancel' id='btnCancel'>Reset</button>
+                    <button type="submit" name='btnDispatch' id='btnDispatch'>Dispatch</button>
+                </div>
 
         </form>
 
