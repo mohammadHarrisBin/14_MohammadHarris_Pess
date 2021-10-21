@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Police Emergency Service System</title>
+
+    <title>Document</title>
     <link rel="stylesheet" href="./styles/logcall.css">
     <link rel="stylesheet" href="./styles/dispatch.css">
     <link rel="stylesheet" href="./styles/update.css">
