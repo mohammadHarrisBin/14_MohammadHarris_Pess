@@ -5,9 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>Police Emergency Service System</title>
 
     <title>Document</title>
+=======
+<<<<<<< HEAD
+    <title>Police Emergency Service System</title>
+=======
+    <title>Document</title>
+>>>>>>> 3326d277314ca612a871f63655d9a3748eb3dc45
+>>>>>>> 7ebb710698258ec26b7c98d85a98d29c4edb1dda
     <link rel="stylesheet" href="./styles/logcall.css">
     <link rel="stylesheet" href="./styles/dispatch.css">
     <link rel="stylesheet" href="./styles/update.css">
