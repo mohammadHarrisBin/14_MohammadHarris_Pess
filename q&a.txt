@@ -1,7 +1,45 @@
-The screen above doesn’t resemble that one in Figure 1, what’re missing? Write down
+1) The screen above doesn’t resemble that one in Figure 1, what’re missing? Write down
 your findings:
 
-1. CSS styling
-2. header and banner
+   1. CSS styling
+   2. header and banner
+
+2) Study the code below, explain its logic.
+
+    1. If a request to search a specific car has not been called yet,
+
+    2. It will return "form1" which requires the user to input the specific 
+    "Patrol Car ID".
+
+    3. Else, it will continue to search for the car with that particular ID.
+
+
+3)How does this code related to that in para 8:
+
+    1. The code is related to para8 because this code requires the request of a form
+    with the data holding the targeted "patrol car".
+
+    2. Without the data, the code cannot query the database connected, hence the
+    data can't be received or manipulated. 
+
+4)What kind of client-side validation must you implement? Write down the code here.
+
+    THE VALIDATION FUNCTION:
+    const validate = () =>{
+        let i = document.forms['form1']['patrolCarId'].value
+        if(i == null || i == ''){
+            alert('Please enter the Patrol Car ID to continue');
+        }
+    }
+    PUT CODE IN FORM:
+    <form action="<?php echo htmlentities($_SERVER['PHP_SELF']) ?>" method="POST" name="form1" onSubmit="return validate();">
+
+
+5)What happen if user enters an invalid patrol car ID? Error!!! How to fix it?
+    
+    PUT CODE IN FORM:
+    <form action="<?php echo htmlentities($_SERVER['PHP_SELF']) ?>" method="POST" name="form1" onSubmit="return validate();">
+    
+    The page will refresh with an error message alerted via the validate function;     
 
 

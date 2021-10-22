@@ -12,7 +12,14 @@
     <link rel="stylesheet" href="./styles/dispatch.css">
     <link rel="stylesheet" href="./styles/update.css">
 
-
+    <script>
+        const validate = () =>{
+            let i = document.forms['form1']['patrolCarId'].value
+            if(i == null || i == ''){
+                alert('Please enter the Patrol Car ID to continue');
+            }
+        }
+    </script>
     <?php
 
     if (isset($_POST["btnUpdate"])) {
@@ -111,8 +118,13 @@
         }
 
         $stmt->close();
-        $mysqli->close();
+        if($mysqli->close()){?>
+            <script type="text/javascript">window.location="./logcall.php";</script>
+        <?php
+        };
+
     }
+    
 
     ?>
 
@@ -125,10 +137,10 @@
     if (!(isset($_POST['btnSearch']))) {
     ?>
         <div id="container">
-            <form action="<?php echo htmlentities($_SERVER['PHP_SELF']) ?>" method="POST" name="form1">
+            <form action="<?php echo htmlentities($_SERVER['PHP_SELF']) ?>" method="POST" name="form1" onSubmit="return validate();">
                 <table class='table'>
                     <tr>
-                        <h1 class='table__top' style="width:40%; padding:5px; font-size:20px">
+                        <h1 class='table__top' style="width:40%; padding:5px; font-size:18px" >
                             Patrol Car ID:
                         </h1>
                     </tr>
@@ -267,6 +279,8 @@
             </div>
 
         </form>
+
+
     <?php } ?>
 
 
