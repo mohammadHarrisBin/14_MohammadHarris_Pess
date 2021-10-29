@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="./styles/dispatch.css">
     <link rel="stylesheet" href="./styles/update.css">
 
+
     <script>
         const validate = () =>{
             let i = document.forms['form1']['patrolCarId'].value
@@ -193,6 +194,7 @@
         ?>
             <script>
                 window.location = 'update.php';
+                alert('no car found')
             </script>"
         <?php }
         //else

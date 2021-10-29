@@ -37,9 +37,17 @@ your findings:
 
 5)What happen if user enters an invalid patrol car ID? Error!!! How to fix it?
     
-    PUT CODE IN FORM:
-    <form action="<?php echo htmlentities($_SERVER['PHP_SELF']) ?>" method="POST" name="form1" onSubmit="return validate();">
+    CODE:
+    if ($resultset->num_rows == 0) {
+        ?>
+            <script>
+                window.location = 'update.php';
+                alert('no car found')
+            </script>"
+        <?php }
+
+    EXPLANATION:
+    This code will redirect the user to update.php and alert that "no car found".
     
-    The page will refresh with an error message alerted via the validate function;     
 
 
