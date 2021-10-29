@@ -140,7 +140,9 @@
             <form action="<?php echo htmlentities($_SERVER['PHP_SELF']) ?>" method="POST" name="form1" onSubmit="return validate();">
                 <table class='table'>
                     <tr>
-                        <h1 class='table__top' style="width:40%; padding:5px; font-size:18px" >
+                    
+                        <h1 class='table__top' style="width:40%; padding:5px; font-size:18px">
+
                             Patrol Car ID:
                         </h1>
                     </tr>
